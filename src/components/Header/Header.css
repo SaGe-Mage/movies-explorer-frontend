@@ -1,0 +1,41 @@
+.header {
+  margin: 0 auto;
+  max-width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.header__logo {
+  padding: 18px 0;
+}
+
+.header__left {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 203px;
+}
+
+.header__button-reg {
+  padding: 9px 20px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header__button-log {
+  padding: 9px 20px;
+  background: #3DDC84;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
