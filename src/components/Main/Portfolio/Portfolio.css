@@ -1,0 +1,39 @@
+.portfolio {
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+.portfolio__title {
+  margin: 0 0 55px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #8B8B8B;
+}
+
+.portfolio__links {
+  padding: 0;
+  margin: 0;
+}
+
+.portfolio__link {
+  padding-bottom: 26px;
+  margin-bottom: 29px;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid #424242;
+}
+
+.portfolio__link:last-child {
+  border: none;
+}
+
+.portfolio__link:after {
+  content: url("../../../images/arrow.svg");
+}

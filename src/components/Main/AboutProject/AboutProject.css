@@ -1,6 +1,6 @@
 .about {
   margin: 0 auto;
-  padding: 110px 0 90px;
+  padding: 110px 50px 90px;
   max-width: 1140px;
 }
 
@@ -46,6 +46,7 @@
 
 .about__line {
   padding: 0;
+  margin: 0;
   display: grid;
   grid-template-columns: 20% 80%;
   list-style: none;
@@ -73,4 +74,23 @@
 .black {
   background-color: rgba(0, 0, 0, 0);
   color: #8B8B8B;
+}
+
+@media screen and (max-width: 1240px){
+  .about {
+    padding-top: 85px;
+  }
+
+  .about__cards {
+    margin-bottom: 93px;
+  }
+
+  .about__card {
+    max-width: 319px;
+  }
+
+  .about__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }

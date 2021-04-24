@@ -1,4 +1,5 @@
 import React from "react";
+import "./AboutMe.css"
 import photo from "../../../images/photo.png"
 
 function AboutMe() {
@@ -15,8 +16,8 @@ function AboutMe() {
             «СКБ Контур». После того, как прошёл курс по веб-разработке, начал заниматься фриланс-заказами и ушёл с
             постоянной работы.</p>
           <ul className="about-me__links">
-            <li className="about-me__link"><a>Facebook</a></li>
-            <li className="about-me__link"><a>Github</a></li>
+            <li><a target="_blank" rel="noreferrer" className="about-me__link" href="https://vk.com/id94975770">Facebook</a></li>
+            <li><a target="_blank" rel="noreferrer" className="about-me__link" href="https://github.com/SaGe-Mage">Github</a></li>
           </ul>
         </div>
         <img src={photo} alt="Фото студента" className="about-me__photo"/>

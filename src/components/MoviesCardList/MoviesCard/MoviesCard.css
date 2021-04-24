@@ -1,0 +1,36 @@
+.card {
+  background-color: #222222;
+}
+
+.card__top {
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__title {
+  margin: 0;
+  padding: 0 0 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.card__duration {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  color: #8B8B8B;
+}
+
+.card__save {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../../images/save-no.svg");
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}

@@ -57,3 +57,29 @@
   background: #303030;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 1240px) {
+  .techs {
+    padding: 90px 50px;
+  }
+
+  .techs__subtitle {
+    padding-top: 80px;
+  }
+
+  .techs__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 83px;
+  }
+
+  .techs__line {
+    max-width: 648px;
+  }
+
+  .techs__line-part {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+  }
+}
