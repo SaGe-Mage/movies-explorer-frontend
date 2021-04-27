@@ -1,3 +1,7 @@
+.bg_gray {
+  background-color: #272727;
+}
+
 .techs {
   margin: 0 auto;
   padding: 100px 0;
@@ -81,5 +85,38 @@
     width: 84px;
     height: 57px;
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .bg_gray {
+    background: none;
+  }
+
+  .techs {
+    padding: 65px 18px;
+  }
+
+  .techs__title {
+    font-size: 18px;
+    padding-bottom: 28px;
+  }
+
+  .techs__subtitle {
+    font-size: 30px;
+    padding-top: 60px;
+  }
+
+  .techs__paragraph {
+    font-size: 11px;
+    line-height: 16px;
+    margin-bottom: 50px;
+  }
+
+  .techs__line {
+    display: grid;
+    grid-template-columns: repeat(2, 84px);
+    gap: 10px;
+    justify-content: center;
   }
 }

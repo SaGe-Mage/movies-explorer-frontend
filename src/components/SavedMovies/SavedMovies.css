@@ -1,4 +1,11 @@
 .saved {
   max-width: 1140px;
   margin: 70px auto 0;
+  padding: 0 30px;
+}
+
+@media screen and (max-width: 1240px) {
+  .saved {
+    margin-top: 86px;
+  }
 }

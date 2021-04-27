@@ -1,6 +1,6 @@
 import React from "react";
 import img from "../../../images/moviePic.png"
-import "./MoviesCard.css"
+import "./MoviesCard.css";
 
 function MoviesCard() {
   return (

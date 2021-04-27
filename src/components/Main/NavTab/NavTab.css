@@ -20,3 +20,16 @@
   color: #fff;
   text-decoration: none;
 }
+
+@media screen and (max-width: 730px) {
+  .nav-tab {
+    max-width: 258px;
+    padding-bottom: 17px;
+  }
+
+  .nav-tab__link {
+    width: 82px;
+    height: 26px;
+    font-size: 10px;
+  }
+}

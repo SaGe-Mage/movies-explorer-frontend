@@ -71,3 +71,9 @@
   color: #4285F4;
   text-decoration: none;
 }
+
+@media screen and (max-width: 1240px) {
+  .login {
+    padding-top: 232px;
+  }
+}

@@ -1,6 +1,6 @@
 .about {
   margin: 0 auto;
-  padding: 110px 50px 90px;
+  padding: 110px 50px 105px;
   max-width: 1140px;
 }
 
@@ -47,6 +47,7 @@
 .about__line {
   padding: 0;
   margin: 0;
+  max-width: 100%;
   display: grid;
   grid-template-columns: 20% 80%;
   list-style: none;
@@ -59,7 +60,6 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 17px;
 }
 
 .green {
@@ -79,6 +79,7 @@
 @media screen and (max-width: 1240px){
   .about {
     padding-top: 85px;
+    padding-bottom: 86px;
   }
 
   .about__cards {
@@ -92,5 +93,46 @@
   .about__paragraph {
     font-size: 12px;
     line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .about {
+    padding: 71px 18px 65px;
+  }
+
+  .about__title {
+    font-size: 18px;
+    padding-bottom: 28px;
+  }
+
+  .about__cards {
+    flex-direction: column;
+    padding-top: 61px;
+    margin-bottom: 3px;
+  }
+
+  .about__card {
+    padding-bottom: 57px;
+  }
+
+  .about__subtitle {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about__paragraph {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about__line {
+    grid-template-columns: 35% 65%;
+  }
+
+  .about__line-part {
+    font-size: 11px;
+    padding: 11px 0;
   }
 }

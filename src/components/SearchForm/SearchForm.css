@@ -14,6 +14,13 @@
   border-bottom: 1px solid #424242;
 }
 
+.search__icon {
+  padding: 0 6px;
+  line-height: 0;
+  width: 34px;
+  height: 34px;
+}
+
 .search__film {
   font-style: normal;
   font-weight: 500;
@@ -40,6 +47,9 @@
 .search__label {
   display: flex;
   align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
 }
 
 .search__short {
@@ -74,4 +84,10 @@
 
 .search__short:checked::before {
   left: 22px;
+}
+
+@media screen and (max-width: 1240px) {
+  .search {
+    padding-bottom: 68px;
+  }
 }

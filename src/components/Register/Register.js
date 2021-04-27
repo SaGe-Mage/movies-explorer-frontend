@@ -1,13 +1,13 @@
 import React from "react";
 import logo from '../../images/logo.svg'
-import "./Register.css"
-import { Link } from 'react-router-dom';
+import "./Register.css";
+import {Link} from 'react-router-dom';
 
 function Register() {
   return (
     <main className="register">
       <div className="register__top">
-        <img src={logo} alt="" className="register__logo"/>
+        <img src={logo} alt="Логотип" className="register__logo"/>
         <h1 className="register__title">Добро пожаловать!</h1>
       </div>
       <form action="" className="register__form">

@@ -1,13 +1,13 @@
 import React from "react";
-import "./Login.css"
-import { Link } from 'react-router-dom';
+import "./Login.css";
+import {Link} from 'react-router-dom';
 import logo from "../../images/logo.svg";
 
 function Login() {
   return (
     <main className="login">
       <div className="login__top">
-        <img src={logo} alt="" className="login__logo"/>
+        <img src={logo} alt="Логотип" className="login__logo"/>
         <h1 className="login__title">Рады видеть!</h1>
       </div>
       <form action="" className="login__form">

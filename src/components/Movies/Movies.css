@@ -1,4 +1,12 @@
 .movies {
   max-width: 1140px;
-  margin: 70px auto 70px;
+  margin: 70px auto;
+  padding: 0 30px;
 }
+
+@media screen and (max-width: 1240px) {
+  .movies {
+    margin-top: 86px;
+  }
+}
+

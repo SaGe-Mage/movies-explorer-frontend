@@ -1,5 +1,5 @@
 import React from "react";
-import "./More.css"
+import "./More.css";
 
 function More() {
   return (
