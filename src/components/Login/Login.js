@@ -13,11 +13,22 @@ function Login() {
       <form action="" className="login__form">
         <label className="login__label">E-mail
           <input type="text" className="login__input" value="pochta@yandex.ru"/></label>
+        <span
+          className="login__input-error"
+          id="input-error"
+        >Что-то пошло не так...
+        </span>
         <label className="login__label">Пароль<
           input type="password" className="login__input" value="Виталий"/></label>
+        <span
+          className="login__input-error"
+          id="input-error"
+        >Что-то пошло не так...
+        </span>
         <button className="login__submit">Войти</button>
       </form>
-      <span className="login__span">Ещё не зарегистрированы?<Link to="/signup" className="login__link">Регистрация</Link></span>
+      <span className="login__span">Ещё не зарегистрированы?<Link to="/signup"
+                                                                  className="login__link">Регистрация</Link></span>
     </main>
   )
 }

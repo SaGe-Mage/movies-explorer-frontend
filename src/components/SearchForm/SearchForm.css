@@ -91,3 +91,23 @@
     padding-bottom: 68px;
   }
 }
+
+@media screen and (max-width: 730px) {
+  .search__top {
+    padding-bottom: 11px;
+    margin-bottom: 42px;
+  }
+
+  .search__icon {
+    display: none;
+  }
+
+  .search__film {
+    text-align: left;
+    font-size: 18px;
+  }
+
+  .search__label {
+    font-size: 11px;
+  }
+}
