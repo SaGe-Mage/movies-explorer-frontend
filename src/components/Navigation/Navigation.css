@@ -6,7 +6,7 @@
   width: 100vw;
   height: 100vh;
   display: none;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .is-open {
@@ -26,7 +26,7 @@
 
 .navigation__close {
   padding: 0;
-  align-self: end;
+  align-self: flex-end;
   background-image: url("../../images/close-icon.svg");
   background-repeat: no-repeat;
   background-position: center;

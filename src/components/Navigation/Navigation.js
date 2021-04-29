@@ -3,11 +3,11 @@ import "./Navigation.css";
 import {Link, NavLink} from "react-router-dom";
 import accIcon from "../../images/account.svg";
 
-function Navigation() {
+function Navigation({onClose, isOpen}) {
   return (
-    <section className="navigation">
+    <section className={`navigation ${isOpen ? 'is-open' : ""}`}>
       <div className="navigation__wrap">
-        <button className="navigation__close"></button>
+        <button className="navigation__close" onClick={onClose}></button>
         <nav className="navigation__nav">
           <nav className="top">
             <NavLink exact to="/" activeClassName="navigation__link_active"

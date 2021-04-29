@@ -13,31 +13,41 @@ import Footer from "../Footer/Footer";
 import "./App.css";
 
 function App() {
+  const [navigate, setNavigate] = React.useState(false);
+
+  function toggleBurg() {
+    setNavigate(!navigate);
+  }
+
   return (
     <div className="page">
       <Switch>
         <Route exact path="/">
-          <Header/>
+          <Header openBurg={toggleBurg}/>
           <Main/>
-          <Navigation/>
+          <Navigation onClose={toggleBurg}
+                      isOpen={navigate}/>
           <Footer/>
         </Route>
         <Route path="/movies">
-          <Header/>
+          <Header openBurg={toggleBurg}/>
           <Movies/>
-          <Navigation/>
+          <Navigation onClose={toggleBurg}
+                      isOpen={navigate}/>
           <Footer/>
         </Route>
         <Route path="/saved-movies">
-          <Header/>
+          <Header openBurg={toggleBurg}/>
           <SavedMovies/>
-          <Navigation/>
+          <Navigation onClose={toggleBurg}
+                      isOpen={navigate}/>
           <Footer/>
         </Route>
         <Route path="/profile">
-          <Header/>
+          <Header openBurg={toggleBurg}/>
           <Profile/>
-          <Navigation/>
+          <Navigation onClose={toggleBurg}
+                      isOpen={navigate}/>
         </Route>
         <Route path="/signin">
           <Login/>

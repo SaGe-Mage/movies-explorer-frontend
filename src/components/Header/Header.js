@@ -5,7 +5,7 @@ import logo from '../../images/logo.svg'
 import accIcon from "../../images/account.svg"
 import menuIcon from "../../images/icon-main.svg";
 
-function Header() {
+function Header({openBurg}) {
   const logged = true;
   return (
     <header className="header">
@@ -19,7 +19,7 @@ function Header() {
           Аккаунт <img src={accIcon} alt="Иконка аккаунта" className="header__account-img"/>
         </Link>
       </div>
-      <img src={menuIcon} alt="Меню" className={`header__hamburger ${logged ? '' : 'no-display'}`}/>
+      <img onClick={openBurg} src={menuIcon} alt="Меню" className={`header__hamburger ${logged ? '' : 'no-display'}`}/>
       <div className={`header__no-log ${logged ? 'no-display' : ''}`}>
         <Link to="/signup" className="header__button">Регистрация</Link>
         <Link to="/signin" className="header__button header__button-log">Войти</Link>
