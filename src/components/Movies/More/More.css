@@ -1,0 +1,13 @@
+.more {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 0;
+  background-color: #2F2F2F;
+  border-radius: 6px;
+  border: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+}

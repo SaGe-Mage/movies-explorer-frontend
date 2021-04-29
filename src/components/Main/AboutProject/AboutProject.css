@@ -1,0 +1,136 @@
+.about {
+  margin: 0 auto;
+  padding: 110px 50px 105px;
+  max-width: 1140px;
+}
+
+.about__title {
+  margin: 0;
+  padding-bottom: 23px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid #DADADA;
+}
+
+.about__cards {
+  padding-left: 0;
+  padding-top: 70px;
+  margin: 0 0 111px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.about__card {
+  max-width: 550px;
+}
+
+.about__subtitle {
+  margin: 0 0 25px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+
+.about__paragraph {
+  margin: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.about__line {
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  list-style: none;
+}
+
+.about__line-part {
+  padding: 9px 0 10px;
+  margin: 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.green {
+  background-color: #3DDC84;
+  color: #000;
+}
+
+.gray {
+  background-color: #303030;
+}
+
+.black {
+  background-color: rgba(0, 0, 0, 0);
+  color: #8B8B8B;
+}
+
+@media screen and (max-width: 1240px) {
+  .about {
+    padding-top: 85px;
+    padding-bottom: 86px;
+  }
+
+  .about__cards {
+    margin-bottom: 93px;
+  }
+
+  .about__paragraph {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .about {
+    padding: 71px 18px 65px;
+  }
+
+  .about__title {
+    font-size: 18px;
+    padding-bottom: 28px;
+  }
+
+  .about__cards {
+    flex-direction: column;
+    padding-top: 61px;
+    gap: 0;
+    margin-bottom: 3px;
+  }
+
+  .about__card {
+    padding-bottom: 57px;
+  }
+
+  .about__subtitle {
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .about__paragraph {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about__line {
+    grid-template-columns: 35% 65%;
+  }
+
+  .about__line-part {
+    font-size: 11px;
+    padding: 11px 0;
+  }
+}

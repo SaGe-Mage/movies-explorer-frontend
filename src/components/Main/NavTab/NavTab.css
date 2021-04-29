@@ -1,0 +1,35 @@
+.nav-tab {
+  margin: 0 auto;
+  padding-bottom: 33px;
+  max-width: 308px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-tab__link {
+  width: 96px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  background: #303030;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 730px) {
+  .nav-tab {
+    max-width: 258px;
+    padding-bottom: 17px;
+  }
+
+  .nav-tab__link {
+    width: 82px;
+    height: 26px;
+    font-size: 10px;
+  }
+}

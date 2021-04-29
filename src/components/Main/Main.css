@@ -1,0 +1,16 @@
+.main {
+  margin-top: 20px;
+  margin-bottom: 96px;
+}
+
+@media screen and (max-width: 1240px) {
+  .main {
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .main {
+    margin-top: 14px;
+  }
+}
