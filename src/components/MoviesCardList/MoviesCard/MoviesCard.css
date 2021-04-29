@@ -35,6 +35,10 @@
   cursor: pointer;
 }
 
+.card__save_is-save {
+  background-image: url("../../../images/save.svg");
+}
+
 .card__pic {
   width: 100%;
 }
