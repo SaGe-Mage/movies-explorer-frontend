@@ -1,29 +1,35 @@
 import React from "react";
 import "./Profile.css";
+import Header from "../Header/Header";
 
-function Profile() {
+function Profile({loggedIn, toggleBurg}) {
   return (
-    <main className="profile">
-      <h1 className="profile__title">Привет, Виталий!</h1>
-      <form action="" className="profile__form">
-        <label className="profile__label">Имя<
-          input type="text" className="profile__input" value="Виталий"/></label>
-        <span
-          className="profile__input-error"
-          id="input-error"
-        >Что-то пошло не так...
+    <>
+      <Header
+        openBurg={toggleBurg}
+        loggedIn={loggedIn}/>
+      <main className="profile">
+        <h1 className="profile__title">Привет, Виталий!</h1>
+        <form action="" className="profile__form">
+          <label className="profile__label">Имя<
+            input type="text" className="profile__input" value="Виталий"/></label>
+          <span
+            className="profile__input-error"
+            id="input-error"
+          >Что-то пошло не так...
         </span>
-        <label className="profile__label">Почта
-          <input type="text" className="profile__input" value="pochta@yandex.ru"/></label>
-        <span
-          className="profile__input-error"
-          id="input-error"
-        >Что-то пошло не так...
+          <label className="profile__label">Почта
+            <input type="text" className="profile__input" value="pochta@yandex.ru"/></label>
+          <span
+            className="profile__input-error"
+            id="input-error"
+          >Что-то пошло не так...
         </span>
-        <button className="profile__submit">Редактировать</button>
-      </form>
-      <button className="profile__logout">Выйти из аккаунта</button>
-    </main>
+          <button className="profile__submit">Редактировать</button>
+        </form>
+        <button className="profile__logout">Выйти из аккаунта</button>
+      </main>
+    </>
   )
 }
 

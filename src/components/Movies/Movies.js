@@ -3,14 +3,22 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import More from "./More/More";
 import "./Movies.css";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
-function Movies() {
+function Movies({loggedIn, toggleBurg}) {
   return (
-    <main className="movies">
-      <SearchForm/>
-      <MoviesCardList/>
-      <More/>
-    </main>
+    <>
+      <Header
+        openBurg={toggleBurg}
+        loggedIn={loggedIn}/>
+      <main className="movies">
+        <SearchForm/>
+        <MoviesCardList/>
+        <More/>
+      </main>
+      <Footer/>
+    </>
   )
 }
 
