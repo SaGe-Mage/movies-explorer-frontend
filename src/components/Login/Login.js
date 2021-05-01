@@ -10,8 +10,8 @@ function Login({onSubmit}) {
   });
 
   const [err, setErr] = useState({
-    email: true,
-    password: true
+    email: false,
+    password: false
   });
   const [errMes, setErrMes] = useState({
     email: '',
@@ -84,7 +84,9 @@ function Login({onSubmit}) {
           id="input-error"
         >Что-то пошло не так...
         </span>
-        <button className="login__submit">Войти</button>
+        <button
+          className={`login__submit ${err.email && err.password ? "" : "login__submit_inactive"}`}>Войти
+        </button>
       </form>
       <span className="login__span">Ещё не зарегистрированы?<Link to="/signup"
                                                                   className="login__link">Регистрация</Link></span>

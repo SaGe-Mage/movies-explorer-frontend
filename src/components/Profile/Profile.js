@@ -1,31 +1,104 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Profile.css";
 import Header from "../Header/Header";
 
-function Profile({loggedIn, toggleBurg}) {
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+function Profile({loggedIn, toggleBurg, onSubmit}) {
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const [data, setData] = useState({
+    name: currentUser.name,
+    email: currentUser.email,
+  });
+
+  const [err, setErr] = useState({
+    name: true,
+    email: true,
+  });
+  const [errMes, setErrMes] = useState({
+    name: '',
+    email: '',
+  });
+
+  function handleChange(event) {
+    const {name, value, validity, validationMessage} = event.target;
+
+    setData({
+      ...data,
+      [name]: value
+    });
+
+    if (name === "name" && !validName(value)) {
+      setErr({
+        ...err,
+        name: false
+      });
+
+      setErrMes({
+        ...errMes,
+        name: "Поле должно содержать только латиницу, кириллицу, пробел или дефис."
+      });
+      return;
+    }
+
+    setErr({
+      ...err,
+      [name]: validity.valid
+    });
+    setErrMes({
+      ...errMes,
+      [name]: validationMessage
+    });
+  }
+
+  function validName(data) {
+    const regex = /(^$)|(^[a-zа-яё]+([-\s]*[a-zа-яё]+)*$)/i;
+    return regex.test(data);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onSubmit({
+      name: data.name,
+      email: data.email,
+    });
+  }
+
   return (
     <>
       <Header
         openBurg={toggleBurg}
         loggedIn={loggedIn}/>
       <main className="profile">
-        <h1 className="profile__title">Привет, Виталий!</h1>
-        <form action="" className="profile__form">
+        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+        <form action="" className="profile__form" onSubmit={handleSubmit}>
           <label className="profile__label">Имя<
-            input type="text" className="profile__input" value="Виталий"/></label>
+            input
+            name="name"
+            type="text"
+            className={`profile__input ${err.name ? "" : "profile__input_is-err"}`}
+            value={data.name}
+            onChange={handleChange}/></label>
           <span
-            className="profile__input-error"
+            className={`profile__input-error ${err.name ? "" : "profile__input-error_active"}`}
             id="input-error"
-          >Что-то пошло не так...
+          >{errMes.name}
         </span>
           <label className="profile__label">Почта
-            <input type="text" className="profile__input" value="pochta@yandex.ru"/></label>
+            <input
+              name="email"
+              type="email"
+              className={`profile__input ${err.email ? "" : "profile__input_is-err"}`}
+              value={data.email || ""}
+              onChange={handleChange}/></label>
           <span
-            className="profile__input-error"
+            className={`profile__input-error ${err.email ? "" : "profile__input-error_active"}`}
             id="input-error"
-          >Что-то пошло не так...
+          >{errMes.email}
         </span>
-          <button className="profile__submit">Редактировать</button>
+          <button type="submit" className="profile__submit">Редактировать</button>
         </form>
         <button className="profile__logout">Выйти из аккаунта</button>
       </main>

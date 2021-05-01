@@ -28,22 +28,30 @@ function App() {
 
   function handleRegister(data) {
     mainApi.register(data)
-      .then((res) => {
+      .then(() => initData())
+      .then(() => {
         setLoggedIn(true);
         history.push('/movies');
-        console.log(res);
       })
       .catch(err => console.log(err));
   }
 
   function handleLogin(data) {
     mainApi.login(data)
-      .then((res) => {
+      .then(() => initData())
+      .then(() => {
+        setLoggedIn(true);
         history.push('/movies');
-        console.log(res);
       })
       .catch(err => console.log(err));
   }
+
+  const initData = () => {
+    return mainApi.getUserInfo()
+      .then(data => {
+        setCurrentUser({...data});
+      })
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

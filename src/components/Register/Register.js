@@ -11,9 +11,9 @@ function Register({onSubmit}) {
   });
 
   const [err, setErr] = useState({
-    name: true,
-    email: true,
-    password: true
+    name: false,
+    email: false,
+    password: false
   });
   const [errMes, setErrMes] = useState({
     name: '',
@@ -28,6 +28,19 @@ function Register({onSubmit}) {
       ...data,
       [name]: value
     });
+
+    if (name === "name" && !validName(value)) {
+      setErr({
+        ...err,
+        name: false
+      });
+      setErrMes({
+        ...errMes,
+        name: "Поле должно содержать только латиницу, кириллицу, пробел или дефис."
+      });
+      return;
+    }
+
     setErr({
       ...err,
       [name]: validity.valid
@@ -36,6 +49,11 @@ function Register({onSubmit}) {
       ...errMes,
       [name]: validationMessage
     });
+  }
+
+  function validName(data) {
+    const regex = /(^$)|(^[a-zа-яё]+([-\s]*[a-zа-яё]+)*$)/i;
+    return regex.test(data);
   }
 
   function handleSubmit(e) {
@@ -97,6 +115,7 @@ function Register({onSubmit}) {
             className={`register__input ${err.password ? "" : "register__input_is-err"}`}
             value={data.password || ''}
             onChange={handleChange}
+            autoComplete="on"
             required
           /></label>
         <span
@@ -107,7 +126,8 @@ function Register({onSubmit}) {
         <button
           type="submit"
           name="submit"
-          className="register__submit">Зарегистрироваться
+          className={`register__submit ${err.name && err.email && err.password ? "" : "register__submit_inactive"}`}>
+          Зарегистрироваться
         </button>
       </form>
       <span className="register__span">Уже зарегистрированы?<Link to="/signin"

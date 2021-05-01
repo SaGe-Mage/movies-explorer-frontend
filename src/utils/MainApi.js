@@ -15,6 +15,12 @@ class MainApi {
       })
   }
 
+  getUserInfo() {
+    return this._sendRequest('users/me', {
+      headers: this._headers
+    });
+  }
+
   register(data) {
     const {name, email, password} = data;
 
