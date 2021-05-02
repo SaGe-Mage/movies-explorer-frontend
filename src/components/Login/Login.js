@@ -60,29 +60,30 @@ function Login({onSubmit}) {
           <input
             name="email"
             type="email"
-            className="login__input"
+            className={`login__input ${err.password ? "" : "login__input_is-err"}`}
             value={data.email || ""}
             onChange={handleChange}
             required
           /></label>
         <span
-          className="login__input-error"
+          className={`login__input-error ${err.email ? "" : "login__input-error_active"}`}
           id="input-error"
-        >Что-то пошло не так...
+        >{errMes.email}
         </span>
         <label className="login__label">Пароль<
           input
           name="password"
           type="password"
-          className="login__input"
+          className={`login__input ${err.password ? "" : "login__input_is-err"}`}
           value={data.password || ""}
           onChange={handleChange}
+          autoComplete="on"
           required
         /></label>
         <span
-          className="login__input-error"
+          className={`login__input-error ${err.password ? "" : "login__input-error_active"}`}
           id="input-error"
-        >Что-то пошло не так...
+        >{errMes.password}
         </span>
         <button
           className={`login__submit ${err.email && err.password ? "" : "login__submit_inactive"}`}>Войти

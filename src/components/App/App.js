@@ -8,6 +8,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login"
 import Error from "../Error/Error";
 import Navigation from "../Navigation/Navigation";
+import Popup from "../Popup/Popup";
 import "./App.css";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -15,16 +16,37 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import mainApi from "../../utils/MainApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
+import confirm from "../../images/ok.png"
+import noConfirm from "../../images/err.png"
+
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [navigate, setNavigate] = React.useState(false);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [message, setMessage] = React.useState({
+    loading: true,
+    iconPath: '',
+    text: ''
+  });
 
   function toggleBurg() {
     setNavigate(!navigate);
   }
 
   const history = useHistory();
+
+  function handlePopupOpen() {
+    setIsPopupOpen(true);
+    document.addEventListener('click', () => {
+      setIsPopupOpen(false);
+      setMessage({
+        loading: true,
+        iconPath: '',
+        text: ''
+      })
+    });
+  }
 
   function handleRegister(data) {
     mainApi.register(data)
@@ -46,12 +68,47 @@ function App() {
       .catch(err => console.log(err));
   }
 
-  const initData = () => {
+  function initData() {
     return mainApi.getUserInfo()
       .then(data => {
         setCurrentUser({...data});
       })
-  };
+  }
+
+  function handleUpdateProfile(data) {
+    handlePopupOpen();
+    mainApi.updateProfile(data)
+      .then(() => {
+        setMessage({
+          iconPath: confirm,
+          text: 'Информация успешно обновлена!'
+        })
+      })
+      .catch(err => {
+        if (err.includes("400")) {
+          setMessage({
+            iconPath: noConfirm,
+            text: 'Введена некорректная информации!'
+          })
+        } else {
+          setMessage({
+            iconPath: noConfirm,
+            text: 'Произошла ошибка!'
+          })
+        }
+      });
+  }
+
+  React.useEffect(() => {
+    initData()
+      .then(() => {
+        setLoggedIn(true);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(`Что-то пошло не так: ${err}`)
+      });
+  }, [history]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -71,6 +128,7 @@ function App() {
                           loggedIn={loggedIn}/>
           <ProtectedRoute component={Profile}
                           path="/profile"
+                          onSubmit={handleUpdateProfile}
                           toggleBurg={toggleBurg}
                           loggedIn={loggedIn}/>
           <Route path="/signin">
@@ -88,6 +146,11 @@ function App() {
         </Switch>
         <Navigation onClose={toggleBurg}
                     isOpen={navigate}/>
+        <Popup onOpen={isPopupOpen}
+               isLoading={message.loading}
+               message={message.text}
+               picture={message.iconPath}
+        />
       </div>
     </CurrentUserContext.Provider>
   );

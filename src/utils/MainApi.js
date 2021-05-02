@@ -47,6 +47,19 @@ class MainApi {
       })
     })
   }
+
+  updateProfile(data) {
+    const {name, email} = data;
+
+    return this._sendRequest("users/me", {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        email,
+      })
+    })
+  }
 }
 
 const mainApi = new MainApi();

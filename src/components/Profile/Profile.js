@@ -66,6 +66,10 @@ function Profile({loggedIn, toggleBurg, onSubmit}) {
     });
   }
 
+  function isReady() {
+    return err.name && err.email && (data.name !== currentUser.name || data.email !== currentUser.email);
+  }
+
   return (
     <>
       <Header
@@ -80,7 +84,10 @@ function Profile({loggedIn, toggleBurg, onSubmit}) {
             type="text"
             className={`profile__input ${err.name ? "" : "profile__input_is-err"}`}
             value={data.name}
-            onChange={handleChange}/></label>
+            onChange={handleChange}
+            minLength="2"
+            maxLength="30"
+            required/></label>
           <span
             className={`profile__input-error ${err.name ? "" : "profile__input-error_active"}`}
             id="input-error"
@@ -92,13 +99,17 @@ function Profile({loggedIn, toggleBurg, onSubmit}) {
               type="email"
               className={`profile__input ${err.email ? "" : "profile__input_is-err"}`}
               value={data.email || ""}
-              onChange={handleChange}/></label>
+              onChange={handleChange}
+              required/></label>
           <span
             className={`profile__input-error ${err.email ? "" : "profile__input-error_active"}`}
             id="input-error"
           >{errMes.email}
         </span>
-          <button type="submit" className="profile__submit">Редактировать</button>
+          <button type="submit"
+                  className={`profile__submit ${isReady() ? "" : "profile__submit_inactive"}`}>
+            Редактировать
+          </button>
         </form>
         <button className="profile__logout">Выйти из аккаунта</button>
       </main>

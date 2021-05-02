@@ -35,6 +35,7 @@
 .profile__input {
   background-color: rgba(0, 0, 0, 0);
   border: none;
+  width: 50%;
   font-style: normal;
   font-weight: normal;
   font-size: 11px;
@@ -68,6 +69,11 @@
   background-color: rgba(0, 0, 0, 0);
   border: none;
   cursor: pointer;
+}
+
+.profile__submit_inactive {
+  opacity: .2;
+  pointer-events: none;
 }
 
 .profile__logout {
