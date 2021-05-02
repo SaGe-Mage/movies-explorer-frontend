@@ -16,8 +16,8 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import mainApi from "../../utils/MainApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import confirm from "../../images/ok.png"
-import noConfirm from "../../images/err.png"
+import confirm from "../../images/ok.png";
+import noConfirm from "../../images/err.png";
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
