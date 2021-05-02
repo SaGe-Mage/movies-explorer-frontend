@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Profile({loggedIn, toggleBurg, onSubmit}) {
+function Profile({loggedIn, toggleBurg, onSubmit, logout}) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const [data, setData] = useState({
@@ -111,7 +111,7 @@ function Profile({loggedIn, toggleBurg, onSubmit}) {
             Редактировать
           </button>
         </form>
-        <button className="profile__logout">Выйти из аккаунта</button>
+        <button onClick={logout} className="profile__logout">Выйти из аккаунта</button>
       </main>
     </>
   )

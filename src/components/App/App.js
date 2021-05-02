@@ -55,7 +55,20 @@ function App() {
         setLoggedIn(true);
         history.push('/movies');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        if (err.includes("400")) {
+          setMessage({
+            iconPath: noConfirm,
+            text: 'Введена некорректная информации!'
+          })
+        } else {
+          setMessage({
+            iconPath: noConfirm,
+            text: 'Произошла ошибка!'
+          })
+        }
+        handlePopupOpen();
+      });
   }
 
   function handleLogin(data) {
@@ -65,7 +78,20 @@ function App() {
         setLoggedIn(true);
         history.push('/movies');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        if (err.includes("400")) {
+          setMessage({
+            iconPath: noConfirm,
+            text: 'Введена некорректная информации!'
+          })
+        } else {
+          setMessage({
+            iconPath: noConfirm,
+            text: 'Произошла ошибка!'
+          })
+        }
+        handlePopupOpen();
+      });
   }
 
   function initData() {
@@ -83,6 +109,7 @@ function App() {
           iconPath: confirm,
           text: 'Информация успешно обновлена!'
         })
+        setCurrentUser(data);
       })
       .catch(err => {
         if (err.includes("400")) {
@@ -97,6 +124,12 @@ function App() {
           })
         }
       });
+  }
+
+  function handleSignOut() {
+    mainApi.logout();
+    setLoggedIn(false);
+    history.push('/');
   }
 
   React.useEffect(() => {
@@ -130,6 +163,7 @@ function App() {
                           path="/profile"
                           onSubmit={handleUpdateProfile}
                           toggleBurg={toggleBurg}
+                          logout={handleSignOut}
                           loggedIn={loggedIn}/>
           <Route path="/signin">
             <Login onSubmit={handleLogin}/>
@@ -149,8 +183,7 @@ function App() {
         <Popup onOpen={isPopupOpen}
                isLoading={message.loading}
                message={message.text}
-               picture={message.iconPath}
-        />
+               picture={message.iconPath}/>
       </div>
     </CurrentUserContext.Provider>
   );

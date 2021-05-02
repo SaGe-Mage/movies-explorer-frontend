@@ -48,6 +48,13 @@ class MainApi {
     })
   }
 
+  logout() {
+    return this._sendRequest("signout", {
+      method: 'GET',
+      headers: this._headers,
+    })
+  }
+
   updateProfile(data) {
     const {name, email} = data;
 
