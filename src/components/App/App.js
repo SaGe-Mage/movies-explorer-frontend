@@ -9,13 +9,12 @@ import Login from "../Login/Login"
 import Error from "../Error/Error";
 import Navigation from "../Navigation/Navigation";
 import Popup from "../Popup/Popup";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import "./App.css";
 
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import mainApi from "../../utils/MainApi";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
 import confirm from "../../images/ok.png";
 import noConfirm from "../../images/err.png";
 

@@ -1,16 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import "./SearchForm.css";
 import searchIcn from "../../images/search.svg"
 
-function SearchForm() {
+function SearchForm({onSubmit}) {
+  const [data, setData] = useState({
+    key: '',
+    isShort: false,
+  });
+
+  function handleChange(event) {
+    const {value} = event.target;
+    setData({
+      ...data,
+      key: value,
+    })
+  }
+
+  function handleChangeCheckbox() {
+    setData({
+      ...data,
+      isShort: document.querySelector(".search__short").checked,
+    });
+    onSubmit({
+      key: data.key,
+      isShort: document.querySelector(".search__short").checked
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(data);
+  }
+
   return (
-    <form action="" className="search">
+    <form onSubmit={handleSubmit} className="search">
       <div className="search__top">
         <img src={searchIcn} alt="Значок поиска" className="search__icon"/>
-        <input type="text" placeholder="Фильм" className="search__film" required/>
+        <input name="search" type="text" placeholder="Фильм" className="search__film" value={data.key}
+               onChange={handleChange}/>
         <button type="submit" className="search__submit">Найти</button>
       </div>
-      <label className="search__label"><input type="checkbox" className="search__short"/>Короткометражки</label>
+      <label className="search__label">
+        <input name="isShort" type="checkbox" className="search__short" checked={data.isShort}
+               onChange={handleChangeCheckbox}/>
+        Короткометражки</label>
     </form>
   )
 }

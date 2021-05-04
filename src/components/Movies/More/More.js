@@ -1,9 +1,9 @@
 import React from "react";
 import "./More.css";
 
-function More() {
+function More({onClick}) {
   return (
-    <button className="more">Ещё</button>
+    <button className="more" onClick={onClick}>Ещё</button>
   )
 }
 

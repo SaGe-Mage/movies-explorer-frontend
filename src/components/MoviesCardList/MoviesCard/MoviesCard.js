@@ -2,17 +2,23 @@ import React from "react";
 import img from "../../../images/moviePic.png"
 import "./MoviesCard.css";
 
-function MoviesCard() {
+function MoviesCard({card}) {
+  function duration() {
+    return `${parseInt(card.duration / 60)}ч ${parseInt(card.duration % 60)}м`;
+  }
+
   return (
     <article className="card">
       <div className="card__top">
         <div className="card__text">
-          <h4 className="card__title">33 слова о дизайне</h4>
-          <p className="card__duration">1ч 47м</p>
+          <h4 className="card__title">{card.nameRU}</h4>
+          <p className="card__duration">{duration()}</p>
         </div>
-        <button className="card__save card__save_is-save"></button>
+        <button className="card__save"/>
       </div>
-      <img src={img} alt="Картинка фильма" className="card__pic"/>
+      <a href={card.trailerLink}><img src={card.image ? `https://api.nomoreparties.co${card.image.url}` : img}
+                                      alt={card.nameRU}
+                                      className="card__pic"/></a>
     </article>
   )
 }
