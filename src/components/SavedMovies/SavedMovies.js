@@ -5,7 +5,7 @@ import "./SavedMovies.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 
-function SavedMovies({loggedIn, toggleBurg}) {
+function SavedMovies({loggedIn, toggleBurg, movies, onDelete}) {
   return (
     <>
       <Header
@@ -13,7 +13,7 @@ function SavedMovies({loggedIn, toggleBurg}) {
         loggedIn={loggedIn}/>
       <main className="saved">
         <SearchForm/>
-        <MoviesCardList/>
+        <MoviesCardList cards={movies} onDelete={onDelete}/>
       </main>
       <Footer/>
     </>

@@ -7,42 +7,39 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 
-import moviesApi from "../../utils/MoviesApi";
-
 import {keyFilter, shortFilter} from "../../utils/filters";
 
-function Movies({loggedIn, toggleBurg}) {
+function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
   const [isLoading, setIsLoading] = useState(false);
   const [cards, setCards] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
 
   function findMovies(data) {
+    setIsLoading(true);
     const {key, isShort} = data;
 
-    moviesApi.getMovies()
-      .then(movies => {
-        setIsLoading(true)
-        localStorage.setItem("movies", JSON.stringify(movies));
-      })
-      .finally(() => setIsLoading(false))
-      .catch(err => console.log(err));
-
     if (key) {
-      let filtered = keyFilter(JSON.parse(localStorage.getItem("movies")), key);
+      let filtered = keyFilter(movies, key);
       if (isShort) {
         filtered = shortFilter(filtered);
       }
-      setFilteredMovies(filtered);
-      if (window.innerWidth <= 1124) {
-        setCards(filtered.slice(0, 8));
-      } else if (window.innerWidth <= 480) {
-        setCards(filtered.slice(0, 5));
+      if (filtered.length) {
+        setFilteredMovies(filtered);
+        if (window.innerWidth <= 1124) {
+          setCards(filtered.slice(0, 8));
+        } else if (window.innerWidth <= 480) {
+          setCards(filtered.slice(0, 5));
+        } else {
+          setCards(filtered.slice(0, 12));
+        }
       } else {
-        setCards(filtered.slice(0, 12));
+        console.log("Ничего не найдено")
       }
     } else {
-      console.log("nea");
+      setCards([]);
+      setFilteredMovies([]);
     }
+    setIsLoading(false);
   }
 
   function handleMoreOpen() {
@@ -71,6 +68,10 @@ function Movies({loggedIn, toggleBurg}) {
           <Preloader/> :
           <MoviesCardList
             cards={cards}
+            onSave={onSave}
+            onDelete={onDelete}
+            movies={movies}
+            myMovies={myMovies}
           />
         }
         {!moreActive() ? <More onClick={handleMoreOpen}/> : ''}

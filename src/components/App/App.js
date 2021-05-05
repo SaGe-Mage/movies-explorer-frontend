@@ -15,6 +15,8 @@ import "./App.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 import mainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
+
 import confirm from "../../images/ok.png";
 import noConfirm from "../../images/err.png";
 
@@ -28,6 +30,8 @@ function App() {
     iconPath: '',
     text: ''
   });
+  const [movies, setMovies] = React.useState([]);
+  const [myMovies, setMyMovies] = React.useState([]);
 
   function toggleBurg() {
     setNavigate(!navigate);
@@ -49,7 +53,7 @@ function App() {
 
   function handleRegister(data) {
     mainApi.register(data)
-      .then(() => initData())
+      .then((data) => initData(data))
       .then(() => {
         setLoggedIn(true);
         history.push('/movies');
@@ -72,7 +76,7 @@ function App() {
 
   function handleLogin(data) {
     mainApi.login(data)
-      .then(() => initData())
+      .then((data) => initData(data))
       .then(() => {
         setLoggedIn(true);
         history.push('/movies');
@@ -93,11 +97,15 @@ function App() {
       });
   }
 
-  function initData() {
-    return mainApi.getUserInfo()
-      .then(data => {
-        setCurrentUser({...data});
+  function initData(myInfo) {
+    return Promise.all([moviesApi.getMovies(), mainApi.getMovies()])
+      .then(([movies, myMovies]) => {
+        setCurrentUser(myInfo);
+        setMovies(movies);
+        setMyMovies(myMovies);
+        setLoggedIn(true);
       })
+      .catch(err => console.log(err));
   }
 
   function handleUpdateProfile(data) {
@@ -128,14 +136,43 @@ function App() {
   function handleSignOut() {
     mainApi.logout();
     setLoggedIn(false);
+    localStorage.clear();
     history.push('/');
   }
 
+  function handleAddMovie(movie) {
+    return mainApi.addMovie({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image ? "https://api.nomoreparties.co" + movie.image.url : "https://www.example.com",
+        trailer: movie.trailerLink,
+        thumbnail: movie.image ? "https://api.nomoreparties.co" + movie.image.formats.thumbnail.url : "https://www.example.com",
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+      }
+    )
+      .then((movie) => setMyMovies([...myMovies, movie]));
+  }
+
+  function handleDeleteMovie(movie) {
+    return mainApi.deleteMovie(movie._id)
+      .then((movie) => {
+        setMyMovies(myMovies.filter((deletedMovie) => deletedMovie._id !== movie._id))
+        return movie;
+      });
+  }
+
   React.useEffect(() => {
-    initData()
-      .then(() => {
-        setLoggedIn(true);
-        history.push("/");
+    mainApi.getUserInfo()
+      .then((data) => {
+        initData(data)
+          .then(() => {
+            history.push("/");
+          })
       })
       .catch((err) => {
         console.log(`Что-то пошло не так: ${err}`)
@@ -153,10 +190,16 @@ function App() {
           <ProtectedRoute component={Movies}
                           path="/movies"
                           toggleBurg={toggleBurg}
+                          movies={movies}
+                          myMovies={myMovies}
+                          onDelete={handleDeleteMovie}
+                          onSave={handleAddMovie}
                           loggedIn={loggedIn}/>
           <ProtectedRoute component={SavedMovies}
                           path="/saved-movies"
                           toggleBurg={toggleBurg}
+                          movies={myMovies}
+                          onDelete={handleDeleteMovie}
                           loggedIn={loggedIn}/>
           <ProtectedRoute component={Profile}
                           path="/profile"
@@ -174,7 +217,7 @@ function App() {
             <Error/>
           </Route>
           <Route>
-            {loggedIn ? <Redirect to="/"/> : <Redirect to="/signin"/>}
+            <Redirect to="/error"/>
           </Route>
         </Switch>
         <Navigation onClose={toggleBurg}

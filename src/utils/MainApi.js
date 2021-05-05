@@ -1,6 +1,8 @@
+import {API_BASE} from "./data";
+
 class MainApi {
   constructor() {
-    this._url = "http://localhost:3000/";
+    this._url = API_BASE;
     this._headers = {'Content-Type': 'application/json'};
   }
 
@@ -65,6 +67,31 @@ class MainApi {
         name,
         email,
       })
+    })
+  }
+
+  addMovie(movie) {
+    return this._sendRequest('movies',
+      {
+        method: 'POST',
+        headers: this._headers,
+        body: JSON.stringify(movie)
+      }
+    );
+  }
+
+  deleteMovie(data) {
+    return this._sendRequest(`movies/${data}`,
+      {
+        method: 'DELETE',
+        headers: this._headers,
+      })
+  }
+
+  getMovies() {
+    return this._sendRequest("movies", {
+      method: 'GET',
+      headers: this._headers,
     })
   }
 }

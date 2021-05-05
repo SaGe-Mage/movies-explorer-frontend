@@ -1,6 +1,8 @@
+import {API_MOVIES} from "./data"
+
 class MoviesApi {
   constructor() {
-    this._url = "https://api.nomoreparties.co/beatfilm-movies";
+    this._url = API_MOVIES;
   }
 
   getMovies() {
