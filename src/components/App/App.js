@@ -120,7 +120,7 @@ function App() {
 
   function handleAddMovie(movie) {
     return mainApi.addMovie({
-        country: movie.country,
+        country: movie.country ? movie.country : "Неизвестно",
         director: movie.director,
         duration: movie.duration,
         year: movie.year,
@@ -130,7 +130,7 @@ function App() {
         thumbnail: movie.image ? "https://api.nomoreparties.co" + movie.image.formats.thumbnail.url : "https://www.example.com",
         movieId: movie.id,
         nameRU: movie.nameRU,
-        nameEN: movie.nameEN,
+        nameEN: movie.nameEN ? movie.nameEN : "Empty name",
       }
     )
       .then((movie) => setMyMovies([...myMovies, movie]));

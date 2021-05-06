@@ -7,8 +7,12 @@ import Footer from "../Footer/Footer";
 import {keyFilter, shortFilter} from "../../utils/filters";
 
 function SavedMovies({loggedIn, toggleBurg, movies, onDelete}) {
-  const [cards, setCards] = useState([...movies]);
+  const [cards, setCards] = useState([]);
   const [errMes, setErrMes] = useState("");
+
+  React.useEffect(() => {
+    setCards(movies);
+  }, [movies]);
 
   function findMovies(data) {
     const {key, isShort} = data;
@@ -44,7 +48,7 @@ function SavedMovies({loggedIn, toggleBurg, movies, onDelete}) {
         loggedIn={loggedIn}/>
       <main className="saved">
         <SearchForm onSubmit={findMovies}/>
-        <span>{errMes}</span>
+        <span className="movies__error">{errMes}</span>
         <MoviesCardList cards={cards} onDelete={onDelete}/>
       </main>
       <Footer/>
