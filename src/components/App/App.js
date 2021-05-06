@@ -71,18 +71,7 @@ function App() {
         history.push('/movies');
       })
       .catch(err => {
-        if (err.includes("400")) {
-          setMessage({
-            iconPath: noConfirm,
-            text: 'Введена некорректная информации!'
-          })
-        } else {
-          setMessage({
-            iconPath: noConfirm,
-            text: 'Произошла ошибка!'
-          })
-        }
-        handlePopupOpen();
+        console.log(err)
       });
   }
 

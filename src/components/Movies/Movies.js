@@ -11,13 +11,15 @@ import {keyFilter, shortFilter} from "../../utils/filters";
 
 function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
   const [isLoading, setIsLoading] = useState(false);
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [errMes, setErrMes] = useState("");
 
   function findMovies(data) {
     setIsLoading(true);
     const {key, isShort} = data;
 
+    setErrMes("");
     if (key) {
       let filtered = keyFilter(movies, key);
       if (isShort) {
@@ -33,11 +35,14 @@ function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
           setCards(filtered.slice(0, 12));
         }
       } else {
-        console.log("Ничего не найдено")
+        setCards([]);
+        setFilteredMovies([]);
+        setErrMes("Ничего не найдено")
       }
     } else {
       setCards([]);
       setFilteredMovies([]);
+      setErrMes("Нужно ввести ключевое слово");
     }
     setIsLoading(false);
   }
@@ -64,6 +69,7 @@ function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
         loggedIn={loggedIn}/>
       <main className="movies">
         <SearchForm onSubmit={findMovies}/>
+        <span className="movies__error">{errMes}</span>
         {isLoading ?
           <Preloader/> :
           <MoviesCardList
