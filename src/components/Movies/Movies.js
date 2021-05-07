@@ -9,15 +9,25 @@ import Preloader from "../Preloader/Preloader";
 
 import {keyFilter, shortFilter} from "../../utils/filters";
 
+import {FILMS_FOR_LONG_WINDOW, FILMS_FOR_SHORT_WINDOW} from "../../utils/data"
+
 function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
   const [isLoading, setIsLoading] = useState(false);
   const [cards, setCards] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [errMes, setErrMes] = useState("");
 
+  React.useEffect(() => {
+    if (localStorage.getItem("filteredFilms")) {
+      setFilteredMovies(JSON.parse(localStorage.getItem("filteredFilms")));
+      showCards(JSON.parse(localStorage.getItem("filteredFilms")));
+    }
+  }, []);
+
   function findMovies(data) {
     setIsLoading(true);
     const {key, isShort} = data;
+    localStorage.setItem("keys", JSON.stringify(data));
 
     setErrMes("");
     if (key) {
@@ -26,20 +36,17 @@ function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
         filtered = shortFilter(filtered);
       }
       if (filtered.length) {
+        localStorage.setItem("filteredFilms", JSON.stringify(filtered));
         setFilteredMovies(filtered);
-        if (window.innerWidth <= 1124) {
-          setCards(filtered.slice(0, 8));
-        } else if (window.innerWidth <= 480) {
-          setCards(filtered.slice(0, 5));
-        } else {
-          setCards(filtered.slice(0, 12));
-        }
+        showCards(filtered);
       } else {
+        localStorage.clear();
         setCards([]);
         setFilteredMovies([]);
         setErrMes("Ничего не найдено")
       }
     } else {
+      localStorage.clear();
       setCards([]);
       setFilteredMovies([]);
       setErrMes("Нужно ввести ключевое слово");
@@ -47,11 +54,21 @@ function Movies({loggedIn, toggleBurg, movies, myMovies, onSave, onDelete}) {
     setIsLoading(false);
   }
 
+  function showCards(movies) {
+    if (window.innerWidth <= 1124) {
+      setCards(movies.slice(0, 8));
+    } else if (window.innerWidth <= 480) {
+      setCards(movies.slice(0, 5));
+    } else {
+      setCards(movies.slice(0, 12));
+    }
+  }
+
   function handleMoreOpen() {
     if (window.innerWidth <= 1124) {
-      setCards(filteredMovies.slice(0, cards.length + 2));
+      setCards(filteredMovies.slice(0, cards.length + FILMS_FOR_SHORT_WINDOW));
     } else {
-      setCards(filteredMovies.slice(0, cards.length + 3));
+      setCards(filteredMovies.slice(0, cards.length + FILMS_FOR_LONG_WINDOW));
     }
   }
 

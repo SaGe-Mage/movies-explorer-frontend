@@ -42,6 +42,8 @@
   width: 30px;
   height: 30px;
   background-image: url("../../../images/save-no.svg");
+  background-repeat: no-repeat;
+  background-position: center;
   border: none;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
@@ -49,6 +51,17 @@
 
 .card__save_is-save {
   background-image: url("../../../images/save.svg");
+}
+
+.card__delete {
+  width: 30px;
+  height: 30px;
+  background-image: url("../../../images/delete.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 .card__pic {

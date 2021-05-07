@@ -22,7 +22,9 @@ function MoviesCard({card, onClick, isMine, id}) {
           <p className="card__duration">{duration()}</p>
         </div>
         <button
-          className={`card__save ${isMine ? "card__save_is-save" : ""}`}
+          className={location.pathname === "/movies" ?
+            `card__save ${isMine ? "card__save_is-save" : ""}`
+            : "card__delete"}
           onClick={handleClick}/>
       </div>
       <a href={location.pathname === "/movies" ? card.trailerLink : card.trailer} className="card__link">

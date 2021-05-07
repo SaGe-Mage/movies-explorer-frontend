@@ -58,8 +58,11 @@ function App() {
         setLoggedIn(true);
         history.push('/movies');
       })
-      .catch(err => {
-        console.log(err)
+      .catch(() => {
+        setMessage({
+          iconPath: noConfirm,
+          text: 'Произошла ошибка!'
+        })
       });
   }
 
@@ -70,8 +73,11 @@ function App() {
         setLoggedIn(true);
         history.push('/movies');
       })
-      .catch(err => {
-        console.log(err)
+      .catch(() => {
+        setMessage({
+          iconPath: noConfirm,
+          text: 'Произошла ошибка!'
+        })
       });
   }
 

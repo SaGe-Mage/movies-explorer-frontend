@@ -1,12 +1,21 @@
 import React, {useState} from "react";
 import "./SearchForm.css";
 import searchIcn from "../../images/search.svg"
+import {useLocation} from "react-router-dom";
 
 function SearchForm({onSubmit}) {
+  const location = useLocation();
+
   const [data, setData] = useState({
     key: '',
     isShort: false,
   });
+
+  React.useEffect(() => {
+    if (localStorage.getItem("keys") && location.pathname === "/movies") {
+      setData(JSON.parse(localStorage.getItem("keys")));
+    }
+  }, [location.pathname]);
 
   function handleChange(event) {
     const {value} = event.target;

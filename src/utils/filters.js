@@ -1,11 +1,11 @@
-function keyFilter(movies, key) {
+import {SHORT_DURATION} from "./data";
+
+export function keyFilter(movies, key) {
   return movies.filter((movie) =>
     movie.description.toLowerCase().includes(key) || movie.nameRU.toLowerCase().includes(key)
   )
 }
 
-function shortFilter(movies) {
-  return movies.filter((movie) => movie.duration <= 40);
+export function shortFilter(movies) {
+  return movies.filter((movie) => movie.duration <= SHORT_DURATION);
 }
-
-module.exports = {keyFilter, shortFilter};
