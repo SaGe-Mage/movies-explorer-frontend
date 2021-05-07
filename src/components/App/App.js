@@ -63,6 +63,7 @@ function App() {
           iconPath: noConfirm,
           text: 'Произошла ошибка!'
         })
+        handlePopupOpen();
       });
   }
 
@@ -78,6 +79,7 @@ function App() {
           iconPath: noConfirm,
           text: 'Произошла ошибка!'
         })
+        handlePopupOpen();
       });
   }
 
