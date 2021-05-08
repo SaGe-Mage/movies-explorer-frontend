@@ -1,31 +1,93 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Login.css";
 import {Link} from 'react-router-dom';
 import logo from "../../images/logo.svg";
 
-function Login() {
+function Login({onSubmit}) {
+  const [data, setData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const [err, setErr] = useState({
+    email: false,
+    password: false
+  });
+  const [errMes, setErrMes] = useState({
+    email: '',
+    password: ''
+  });
+
+  function handleChange(event) {
+    const {name, value, validity, validationMessage} = event.target;
+
+    setData({
+      ...data,
+      [name]: value
+    });
+    setErr({
+      ...err,
+      [name]: validity.valid
+    });
+    setErrMes({
+      ...errMes,
+      [name]: validationMessage
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onSubmit({
+      email: data.email,
+      password: data.password,
+    });
+  }
+
   return (
     <main className="login">
       <div className="login__top">
         <img src={logo} alt="Логотип" className="login__logo"/>
         <h1 className="login__title">Рады видеть!</h1>
       </div>
-      <form action="" className="login__form">
+      <form
+        name="login"
+        className="login__form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <label className="login__label">E-mail
-          <input type="text" className="login__input" value="pochta@yandex.ru"/></label>
+          <input
+            name="email"
+            type="email"
+            className={`login__input ${err.password ? "" : "login__input_is-err"}`}
+            value={data.email || ""}
+            onChange={handleChange}
+            required
+          /></label>
         <span
-          className="login__input-error"
+          className={`login__input-error ${err.email ? "" : "login__input-error_active"}`}
           id="input-error"
-        >Что-то пошло не так...
+        >{errMes.email}
         </span>
         <label className="login__label">Пароль<
-          input type="password" className="login__input" value="Виталий"/></label>
+          input
+          name="password"
+          type="password"
+          className={`login__input ${err.password ? "" : "login__input_is-err"}`}
+          value={data.password || ""}
+          onChange={handleChange}
+          autoComplete="on"
+          required
+        /></label>
         <span
-          className="login__input-error"
+          className={`login__input-error ${err.password ? "" : "login__input-error_active"}`}
           id="input-error"
-        >Что-то пошло не так...
+        >{errMes.password}
         </span>
-        <button className="login__submit">Войти</button>
+        <button
+          className={`login__submit ${err.email && err.password ? "" : "login__submit_inactive"}`}>Войти
+        </button>
       </form>
       <span className="login__span">Ещё не зарегистрированы?<Link to="/signup"
                                                                   className="login__link">Регистрация</Link></span>

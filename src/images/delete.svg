@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30">
+    <defs/>
+    <rect width="30" height="30" fill="#313131" rx="15"/>
+    <path fill="#fff" fill-rule="evenodd"
+          d="M15 15.9429l2.357 2.357 1.0607-1.0606-2.357-2.3571 2.2392-2.2392-1.0606-1.0607L15 13.8216l-2.2391-2.2392-1.0607 1.0607 2.2391 2.2391-2.3569 2.3569 1.0607 1.0607L15 15.9429z"
+          clip-rule="evenodd"/>
+</svg>

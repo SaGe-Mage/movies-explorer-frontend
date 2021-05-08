@@ -69,6 +69,13 @@
   color: #FFFFFF;
 }
 
+.register__submit_inactive {
+  color: #000000;
+  background-color: #ffffff;
+  opacity: .2;
+  pointer-events: none;
+}
+
 .register__span {
   margin-top: 16px;
   display: block;
